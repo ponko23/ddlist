@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>D&Dリストのテスト</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="jquery.js"></script>
+    <script src="ddlist.js"></script>
+  </head>
+  <body onselectstart="retrun false;"
+    onmousedown="if (typeof event.preventDefault != 'undefinded'){
+      event.preventDefault(); }">
+    <ul id="list">
+      <li>Item-1</li>
+      <li>Item-2</li>
+      <li>Item-3</li>
+      <li>Item-4</li>
+      <li>Item-5</li>
+    </ul>
+    <span id="drag-item">test</span>
+    Debug : <span id="debug"></span>
+  </body>
+</html>
