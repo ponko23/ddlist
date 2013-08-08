@@ -3,6 +3,10 @@ $(function() {
   var AbstractState, DragMovingState, NormalState, TextEditingState, selected, state, transitState;
   state = null;
   selected = null;
+  /*
+    EventHandlerの振り分け
+  */
+
   $('#list li').mousedown(function(event) {
     return state.onMouseDown(event);
   });
@@ -21,10 +25,18 @@ $(function() {
   $('body').not('.text-editing').click(function() {
     return state.onOtherClick();
   });
+  /*
+    State移行処理
+  */
+
   transitState = function(nextState) {
     $("#debug").text(state + " -> " + nextState);
     return state = nextState;
   };
+  /*
+    Stateの基底クラス
+  */
+
   AbstractState = function() {};
   AbstractState.prototype = {
     initialize: function() {},
@@ -38,6 +50,10 @@ $(function() {
       return "AbstractState";
     }
   };
+  /*
+    待機中State
+  */
+
   NormalState = function() {
     return selected = null;
   };
@@ -60,6 +76,10 @@ $(function() {
       return "NormalState";
     }
   });
+  /*
+    List項目移動中State
+  */
+
   DragMovingState = function(target) {
     selected = target;
     $("#drag-item").text($(selected).text()).show();
@@ -91,6 +111,10 @@ $(function() {
       return "DragMovingState";
     }
   });
+  /*
+    textbox編集中State
+  */
+
   TextEditingState = function(target) {
     var pos;
     selected = target;
